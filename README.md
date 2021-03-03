@@ -1,5 +1,7 @@
 # Project2
 
+StackBlitz Demo Link -  https://stackblitz.com/edit/angular-pxrp5v
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 ## Development server

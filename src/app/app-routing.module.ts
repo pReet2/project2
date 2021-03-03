@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './posts/posts.component';
@@ -7,56 +7,62 @@ import { SubjectComponent } from './posts/create/detail/subject/subject.componen
 import { InfoComponent } from './posts/create/detail/subject/info/info.component';
 import { CreateComponent } from './posts/create/create.component';
 
-
-
-
-  const routes: Routes = [
-    {
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'posts',
+    children: [
+      {
         path: '',
-        component: HomeComponent
-    },
-    {
-        path: 'posts',
-        children: [
-          {
-            path: '',
-            component: PostsComponent
-          },
-          {
-              path: 'create',
-              component: CreateComponent,
-              children:[
-                {
-                  path: 'detail',
-                  component: DetailComponent, 
-                  children:[
-                    {
-                      path: 'subject',
-                      component: SubjectComponent, 
-                      children:[
-                        {
-                          path: 'info',
-                          component: InfoComponent, 
-                      }
-               
-                      ]
-        
-                  }
-           
-                  ]
-    
-              }
-       
-              ]
-          },
-            ]
-    }
-  ];
-  
+        component: PostsComponent,
+      },
 
+      {
+        path: 'create',
+        children:[
+         {
+          path: '',
+          component: CreateComponent
+         },
+
+         {
+           path: 'detail',
+           children:[
+             {
+              path: '',
+              component: DetailComponent
+             },
+
+             {
+               path: 'subject',
+               children:[
+                 {
+                   path: '',
+                   component: SubjectComponent
+                 },
+                 {
+                   path: 'info',
+                   component: InfoComponent
+                 }
+               ]
+              
+             }
+           ]
+           
+         }
+        ]
+      
+      },
+
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
